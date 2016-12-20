@@ -1,8 +1,9 @@
 <?php
 /**
  * 仅支持Linux环境
- * by:JACK
+ * by:glacier
  */
+ namespace glacier\widgets;
 
 class SysInfo
 {

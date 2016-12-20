@@ -1,4 +1,6 @@
 <?php
+namespace glacier\widgets;
+
 class FileManager
 {
     protected $errorCode;

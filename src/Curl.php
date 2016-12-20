@@ -1,4 +1,6 @@
 <?php
+
+namespace glacier\widgets;
 /**
  * modify by php-mod/curl https://github.com/php-mod/curl
  * MIT license

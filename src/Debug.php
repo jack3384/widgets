@@ -1,5 +1,6 @@
 <?php
 
+namespace glacier\widgets;
 /**
  * Author: 火柴同学
  * Date: 2016/9/29
@@ -28,7 +29,7 @@ class Debug
      */
     public static function getPrivateValue($fieldName, $obj)
     {
-        $r = new ReflectionObject($obj);
+        $r = new \ReflectionObject($obj);
 
         while(true){
             if (!$r->hasProperty($fieldName)) {
