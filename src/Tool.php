@@ -1,25 +1,25 @@
 <?php
 
 namespace glacier\widgets;
-/**
- * Author: 火柴同学
- * Date: 2016/9/29
- * Time: 9:40
- */
+    /**
+     * Author: 火柴同学
+     * Date: 2016/9/29
+     * Time: 9:40
+     */
 
 /**
  * 封装了一些实用的debug函数
  *
  * 用于方便的获得调试信息
  */
-class Debug
+class Tool
 {
     /**
      * 动态的获得对象当前的私有属性值
      *
      * 用法:
      * ```
-     * $value=Debug::getPrivateValue('orWhere',$ap)
+     * $value=Tool::getPrivateValue('orWhere',$ap)
      * var_dump($value);
      * ```
      *
@@ -31,15 +31,15 @@ class Debug
     {
         $r = new \ReflectionObject($obj);
 
-        while(true){
+        while (true) {
             if (!$r->hasProperty($fieldName)) {
-                $p=$r->getParentClass();
-                if(!$p){
+                $p = $r->getParentClass();
+                if (!$p) {
                     break;
-                }else{
-                    $r=$p;
+                } else {
+                    $r = $p;
                 }
-            }else{
+            } else {
                 break;
             }
         }

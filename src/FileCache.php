@@ -1,9 +1,9 @@
 <?php
 /**
- * User: Jenner
+ * Author: Jenner
  * Date: 2015/5/15
  * Time: 15:40
- * modify:jack
+ * Editor:jack
  * 基于http://www.huyanping.cn/php%E6%96%87%E4%BB%B6%E7%BC%93%E5%AD%98%E5%AE%9E%E7%8E%B0/ 上文档修改
  */
 namespace glacier\widgets;

@@ -2,61 +2,11 @@
 
 namespace glacier\widgets;
 /**
- * modify by php-mod/curl https://github.com/php-mod/curl
+ * modify from php-mod/curl https://github.com/php-mod/curl
  * MIT license
  *
  * Doc below
  * Quick Start and Examples
-
-$curl = new Curl\Curl();
-$curl->get('http://www.example.com/');
-$curl = new Curl\Curl();
-$curl->get('http://www.example.com/search', array(
-'q' => 'keyword',
-));
-$curl = new Curl\Curl();
-$curl->post('http://www.example.com/login/', array(
-'username' => 'myusername',
-'password' => 'mypassword',
-));
-$curl = new Curl\Curl();
-$curl->setBasicAuthentication('username', 'password');
-$curl->setUserAgent('');
-$curl->setReferrer('');
-$curl->setHeader('X-Requested-With', 'XMLHttpRequest');
-$curl->setCookie('key', 'value');
-$curl->get('http://www.example.com/');
-
-if ($curl->error) {
-echo $curl->error_code;
-}
-else {
-echo $curl->response;
-}
-
-var_dump($curl->request_headers);
-var_dump($curl->response_headers);
-$curl = new Curl\Curl();
-$curl->setopt(CURLOPT_RETURNTRANSFER, TRUE);
-$curl->setopt(CURLOPT_SSL_VERIFYPEER, FALSE);
-$curl->get('https://encrypted.example.com/');
-$curl = new Curl\Curl();
-$curl->put('http://api.example.com/user/', array(
-'first_name' => 'Zach',
-'last_name' => 'Borboa',
-));
-$curl = new Curl\Curl();
-$curl->patch('http://api.example.com/profile/', array(
-'image' => '@path/to/file.jpg',
-));
-$curl = new Curl\Curl();
-$curl->delete('http://api.example.com/user/', array(
-'id' => '1234',
-));
-$curl->close();
-// Example access to curl object.
-curl_set_opt($curl->curl, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1');
-curl_close($curl->curl);
  */
 class Curl
 {
@@ -160,9 +110,9 @@ class Curl
         //修改添加直接获得返回值
         return $this->getResponse();
     }
-    public function delete($url, $data = array())
+    public function delete($url, $queryString = array())
     {
-        $this->setopt(CURLOPT_URL, $url . '?' . http_build_query($data));
+        $this->setopt(CURLOPT_URL, $url . '?' . http_build_query($queryString));
         $this->setopt(CURLOPT_CUSTOMREQUEST, 'DELETE');
         $this->_exec();
 
