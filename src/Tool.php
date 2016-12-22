@@ -1,11 +1,12 @@
 <?php
 
 namespace glacier\widgets;
-    /**
-     * Author: 火柴同学
-     * Date: 2016/9/29
-     * Time: 9:40
-     */
+
+/**
+ * Author: 火柴同学
+ * Date: 2016/9/29
+ * Time: 9:40
+ */
 
 /**
  * 封装了一些实用的debug函数
@@ -47,6 +48,33 @@ class Tool
         $sec->setAccessible(true);
         $value = $sec->getValue($obj);
         return $value;
+    }
+
+    /**
+     * @param $cmd
+     * @return array|bool
+     * 返回的$array['exitCode']为子程序退出码执行成功返回的是0
+     * proc_open的封装可以获得stderr提示信息
+     */
+    public static function proc_exec($cmd)
+    {
+        $descriptorspec = array(
+            0 => array("pipe", "r"),
+            1 => array("pipe", "w"),
+            2 => array("pipe", "w")
+        );
+        $process = proc_open(
+            $cmd,
+            $descriptorspec,
+            $pipes
+        );
+        if ($process === false) {
+            return false;
+        }
+        $stdout = stream_get_contents($pipes[1]);
+        $stderr = stream_get_contents($pipes[2]);
+        $exitCode = proc_close($process);
+        return compact('exitCode', 'stdout', 'stderr');
     }
 
 }
