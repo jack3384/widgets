@@ -77,4 +77,25 @@ class Tool
         return compact('exitCode', 'stdout', 'stderr');
     }
 
+    /**
+     * !!!重要，此功能对部分httpServer无效，比如IIS和其他小的build-in webServer.Apache2.4.X测试有效
+     * 将输出传入的数据，并断开与客户端的连接，然后再执行后面的语句。这样即使后面的语句有输出也将无法显示给客户端
+     * 可以用作先输出再做记录日志等耗时操作。
+     *
+     *
+     * @param $outputString
+     */
+    public static function responseNow($outputString)
+    {
+        ignore_user_abort(true);
+        ob_start();
+        ob_clean();
+        echo $outputString;
+        header('Connection:close');
+        header('Content-Length:'.ob_get_length());
+        ob_end_flush();
+        ob_flush(); //必须加这句或者ob_end_flush() 才能立即返回.
+        flush();
+    }
+
 }
