@@ -75,9 +75,9 @@ class Validator
                     continue;
                 }
                 if (isset($rule[1])) {
-                    $status = $this->$rule[0]($array[$key], $rule[1]);
+                    $status = call_user_func_array([$this,$rule[0]],[$array[$key],$rule[1]]);
                 } else {
-                    $status = $this->$rule[0]($array[$key]);
+                    $status = call_user_func([$this,$rule[0]],$array[$key]);
                 }
                 if (!$status) {
                     return false;
@@ -92,7 +92,7 @@ class Validator
         if (!empty($val)) {
             return true;
         }
-        if($val==0){
+        if($val==0 and $val!=""){
             return true;
         }
         $this->errorMsg = "{$this->key}不能为空";
